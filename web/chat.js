@@ -255,6 +255,12 @@ app.registerExtension({
     },
     beforeRegisterNodeDef(nodeType, data) {
         if (!Object.hasOwn(widths, data.name)) return;
+        const serialize = nodeType.prototype.onSerialize;
+        nodeType.prototype.onSerialize = function(saved) {
+            serialize?.call(this, saved);
+            // Manager can leave a null pack ID on a manually installed node.
+            if (saved.properties?.aux_id === null) saved.properties.aux_id = "attashe/ComfyUI-LLMClient-Lite";
+        };
         const original = nodeType.prototype.onNodeCreated;
         nodeType.prototype.onNodeCreated = function(...args) {
             const result = original?.apply(this, args);
