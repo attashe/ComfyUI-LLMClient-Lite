@@ -144,6 +144,10 @@ Run from this directory in an environment with the ComfyUI dependencies:
 python -m unittest discover -s tests -v
 ```
 
+## Credits
+
+AusBoss inspired the nodes’ visual style and the compact layout of the Chat controls. [ComfyUI-AusBoss](https://github.com/ausboss/ComfyUI-AusBoss)
+
 ## References
 
 - [Original project (MIT)](https://github.com/Vex131/ComfyUI-LLMClient)

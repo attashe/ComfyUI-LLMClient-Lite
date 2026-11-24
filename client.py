@@ -138,6 +138,8 @@ async def _read_reply(response, stream):
         text.append(t)
         reasoning.append(r)
         reason = choice.get("finish_reason")
+    if reason == "length":
+        raise LLMError("Generation reached a token limit (finish_reason=length). Increase the output token budget in Settings → Sampling, or shorten the input.")
     if reason not in (None, "stop", "eos", "end_turn"):
         raise LLMError(f"LLM did not finish a complete text answer (finish_reason={reason}); check token budget or server settings")
     answer, thought = "".join(text).strip(), "".join(reasoning).strip()

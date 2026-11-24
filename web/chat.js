@@ -1,4 +1,5 @@
 import { app } from "../../scripts/app.js";
+import { api } from "../../scripts/api.js";
 
 const css = document.createElement("link");
 css.rel = "stylesheet";
@@ -241,6 +242,17 @@ function inlineSettings(node) {
 
 app.registerExtension({
     name: "LLMClientLite.Controls",
+    setup() {
+        api.addEventListener("execution_error", ({ detail }) => {
+            if (!Object.hasOwn(widths, detail.node_type)) return;
+            app.extensionManager.toast.add({
+                severity: "error",
+                summary: `LLM Client Lite · node ${detail.node_id}`,
+                detail: detail.exception_message.trim() || detail.exception_type,
+                life: 30000,
+            });
+        });
+    },
     getNodeMenuItems(node) {
         if (node.comfyClass !== "LiteLLMChat") return [];
         return [{
