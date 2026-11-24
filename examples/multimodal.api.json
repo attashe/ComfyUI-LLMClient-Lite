@@ -1,0 +1,99 @@
+{
+  "prompt": {
+    "1": {
+      "class_type": "LiteLLMProvider",
+      "inputs": {
+        "base_url": "http://127.0.0.1:5000/v1",
+        "model": "auto",
+        "key_env": "LLMCLIENT_API_KEY"
+      }
+    },
+    "2": {
+      "class_type": "LiteLLMSkill",
+      "inputs": {
+        "skill": "minimax-h3-video-reference",
+        "extra": ""
+      }
+    },
+    "3": {
+      "class_type": "LiteLLMChat",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "system_prompt": [
+          "2",
+          0
+        ],
+        "prompt": "Create a 6-second clip. Picture 1 is the character identity, Picture 2 the environment, Video 1 provides camera movement. Do not copy the original audio.",
+        "seed": 0,
+        "video_fps": [
+          "8",
+          2
+        ],
+        "sample_fps": 2.0,
+        "max_video_frames": 12,
+        "max_image_edge": 768,
+        "max_visual_items": 64,
+        "max_payload_mb": 32,
+        "temperature": -1.0,
+        "top_p": -1.0,
+        "top_k": -1,
+        "max_tokens": 4096,
+        "reasoning_effort": "",
+        "output_format": "text",
+        "stream": true,
+        "timeout_seconds": 300,
+        "images.image_0": [
+          "5",
+          0
+        ],
+        "images.image_1": [
+          "6",
+          0
+        ],
+        "videos.video_0": [
+          "8",
+          0
+        ]
+      }
+    },
+    "4": {
+      "class_type": "PreviewAny",
+      "inputs": {
+        "source": [
+          "3",
+          0
+        ]
+      }
+    },
+    "5": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "character.png"
+      }
+    },
+    "6": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "environment.png"
+      }
+    },
+    "7": {
+      "class_type": "LoadVideo",
+      "inputs": {
+        "file": "camera.mp4"
+      }
+    },
+    "8": {
+      "class_type": "GetVideoComponents",
+      "inputs": {
+        "video": [
+          "7",
+          0
+        ]
+      }
+    }
+  }
+}

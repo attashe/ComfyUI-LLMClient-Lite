@@ -1,0 +1,57 @@
+{
+  "prompt": {
+    "1": {
+      "class_type": "LiteLLMProvider",
+      "inputs": {
+        "base_url": "http://127.0.0.1:5000/v1",
+        "model": "auto",
+        "key_env": "LLMCLIENT_API_KEY"
+      }
+    },
+    "2": {
+      "class_type": "LiteLLMSkill",
+      "inputs": {
+        "skill": "krea-2",
+        "extra": ""
+      }
+    },
+    "3": {
+      "class_type": "LiteLLMChat",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "system_prompt": [
+          "2",
+          0
+        ],
+        "prompt": "A rain-soaked medieval harbor at dusk, realistic cinematic concept art.",
+        "seed": 0,
+        "video_fps": 24.0,
+        "sample_fps": 2.0,
+        "max_video_frames": 12,
+        "max_image_edge": 768,
+        "max_visual_items": 64,
+        "max_payload_mb": 32,
+        "temperature": -1.0,
+        "top_p": -1.0,
+        "top_k": -1,
+        "max_tokens": 4096,
+        "reasoning_effort": "",
+        "output_format": "text",
+        "stream": true,
+        "timeout_seconds": 300
+      }
+    },
+    "4": {
+      "class_type": "PreviewAny",
+      "inputs": {
+        "source": [
+          "3",
+          0
+        ]
+      }
+    }
+  }
+}

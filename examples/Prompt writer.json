@@ -1,0 +1,212 @@
+{
+  "id": "c298b213-3bd2-4847-97f5-db3efec3e000",
+  "revision": 0,
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LiteLLMProvider",
+      "pos": [
+        40,
+        110
+      ],
+      "size": [
+        320,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "LLMCLIENT_LITE_PROVIDER",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LiteLLMProvider"
+      },
+      "widgets_values": [
+        "http://127.0.0.1:5000/v1",
+        "auto",
+        "LLMCLIENT_API_KEY"
+      ],
+      "widgets_values_named": {
+        "base_url": "http://127.0.0.1:5000/v1",
+        "model": "auto",
+        "key_env": "LLMCLIENT_API_KEY"
+      },
+      "color": "#24494b",
+      "bgcolor": "#202e30"
+    },
+    {
+      "id": 2,
+      "type": "LiteLLMChat",
+      "pos": [
+        410,
+        110
+      ],
+      "size": [
+        400,
+        440
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "LLMCLIENT_LITE_PROVIDER",
+          "link": 1
+        },
+        {
+          "name": "images.image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "videos.video_0",
+          "shape": 7,
+          "type": "IMAGE,VIDEO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "STRING",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "reasoning",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LiteLLMChat"
+      },
+      "widgets_values": [
+        "Write a single image prompt for a rain-soaked medieval harbor at dusk, with light spilling from a sailmaker’s workshop.",
+        0,
+        "fixed",
+        24,
+        2,
+        12,
+        768,
+        64,
+        32,
+        0.3,
+        -1,
+        -1,
+        4096,
+        "",
+        "text",
+        true,
+        300,
+        "",
+        "flux-image",
+        "llama.cpp · reasoning first",
+        64
+      ],
+      "widgets_values_named": {
+        "prompt": "Write a single image prompt for a rain-soaked medieval harbor at dusk, with light spilling from a sailmaker’s workshop.",
+        "seed": 0,
+        "control_after_generate": "fixed",
+        "video_fps": 24,
+        "sample_fps": 2,
+        "max_video_frames": 12,
+        "max_image_edge": 768,
+        "max_visual_items": 64,
+        "max_payload_mb": 32,
+        "temperature": 0.3,
+        "top_p": -1,
+        "top_k": -1,
+        "max_tokens": 4096,
+        "reasoning_effort": "",
+        "output_format": "text",
+        "stream": true,
+        "timeout_seconds": 300,
+        "system_prompt": "",
+        "template": "flux-image",
+        "reasoning_mode": "llama.cpp · reasoning first",
+        "reasoning_budget": 64
+      },
+      "color": "#24494b",
+      "bgcolor": "#202e30"
+    },
+    {
+      "id": 3,
+      "type": "PreviewAny",
+      "pos": [
+        870,
+        110
+      ],
+      "size": [
+        330,
+        260
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "LLMCLIENT_LITE_PROVIDER"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9,
+      "offset": [
+        65,
+        30
+      ]
+    },
+    "frontendVersion": "1.59.11"
+  },
+  "version": 0.4
+}
